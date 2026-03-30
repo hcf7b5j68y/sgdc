@@ -22,21 +22,20 @@ public class Main {
         Boolean noCrossColumn = Boolean.TRUE;
 
         String name = System.getProperty("dataset");
-        String dataset_name = "airport";
 
-        String dir_path = "D:\\workspace\\DCValidity\\datasets\\";
+        if(name == null || name.isEmpty()){
+            name = "";//input here
+        }
 
-        String datasetPath = dir_path+dataset_name+".csv";
-
-        System.out.println("dataset: "+dataset_name);
-        File file = new File(datasetPath);
+        System.out.println("dataset: "+name);
+        File file = new File(name);
         RelationalInput relationalInput = new RelationalInput(file);
         Input input = new Input(relationalInput);
         PredicateBuilder predicates = new PredicateBuilder(input, noCrossColumn, minimumSharedValue);
         System.out.println("Predicate space size:" + predicates.getPredicates().size());
         long t01 = System.currentTimeMillis();
 
-        DenialConstraintSet dcs = (new SgdcRunner(dataset_name)).run(input, predicates);
+        DenialConstraintSet dcs = (new SgdcRunner(name)).run(input, predicates);
         log.info("total runtime: " + (System.currentTimeMillis()-t01)+"ms");
     }
 
