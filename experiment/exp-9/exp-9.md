@@ -120,15 +120,21 @@
 
 *Domain: BTS Airline On-Time Performance Data*
 
+### Detailed DC List 
+
 | ID       | Denial Constraint                                            |
 | -------- | ------------------------------------------------------------ |
 | **DC1**  | `¬(t0.OriginCityName(String) <> t1.OriginCityName(String) ^ t0.OriginAirportSeqID(Integer) == t1.OriginAirportSeqID(Integer))` |
+| **DC2**  | `¬(t0.Year(Integer) <> t1.Year(Integer))`                    |
 | **DC3**  | `¬(t0.OriginAirportID(Integer) <> t1.OriginAirportID(Integer) ^ t0.Origin(String) == t1.Origin(String))` |
 | **DC4**  | `¬(t0.Origin(String) <> t1.Origin(String) ^ t0.OriginAirportID(Integer) == t1.OriginAirportID(Integer))` |
 | **DC5**  | `¬(t0.OriginStateFips(Integer) <> t1.OriginStateFips(Integer) ^ t0.OriginStateName(String) == t1.OriginStateName(String))` |
 | **DC6**  | `¬(t0.OriginStateFips(Integer) == t1.OriginStateFips(Integer) ^ t0.OriginStateName(String) <> t1.OriginStateName(String))` |
 | **DC7**  | `¬(t0.OriginAirportSeqID(Integer) == t1.OriginAirportSeqID(Integer) ^ t0.OriginAirportID(Integer) <> t1.OriginAirportID(Integer))` |
 | **DC8**  | `¬(t0.OriginAirportSeqID(Integer) <> t1.OriginAirportSeqID(Integer) ^ t0.OriginAirportID(Integer) == t1.OriginAirportID(Integer))` |
+| **DC9**  | `¬(t0.DayofMonth(Integer) == t1.DayofMonth(Integer) ^ t0.DayOfWeek(Integer) <> t1.DayOfWeek(Integer) ^ t0.Month(Integer) == t1.Month(Integer))` |
+| **DC10** | `¬(t0.DayOfWeek(Integer) <> t1.DayOfWeek(Integer) ^ t0.FlightDate(String) == t1.FlightDate(String))` |
+| **DC11** | `¬(t0.OriginCityName(String) <> t1.OriginCityName(String) ^ t0.OriginAirportID(Integer) >= t1.OriginAirportID(Integer) ^ t0.OriginAirportSeqID(Integer) <= t1.OriginAirportSeqID(Integer))` |
 | **DC12** | `¬(t0.OriginState(String) <> t1.OriginState(String) ^ t0.Origin(String) == t1.Origin(String))` |
 | **DC13** | `¬(t0.OriginWac(Integer) == t1.OriginWac(Integer) ^ t0.OriginStateName(String) <> t1.OriginStateName(String))` |
 | **DC14** | `¬(t0.OriginStateName(String) == t1.OriginStateName(String) ^ t0.OriginWac(Integer) <> t1.OriginWac(Integer))` |
@@ -139,64 +145,82 @@
 | **DC19** | `¬(t0.OriginCityName(String) <> t1.OriginCityName(String) ^ t0.OriginAirportID(Integer) == t1.OriginAirportID(Integer))` |
 | **DC20** | `¬(t0.OriginStateName(String) <> t1.OriginStateName(String) ^ t0.OriginAirportID(Integer) == t1.OriginAirportID(Integer))` |
 | **DC21** | `¬(t0.OriginStateFips(Integer) <> t1.OriginStateFips(Integer) ^ t0.OriginAirportSeqID(Integer) == t1.OriginAirportSeqID(Integer))` |
+| **DC22** | `¬(t0.Origin(String) <> t1.Origin(String) ^ t0.OriginAirportID(Integer) >= t1.OriginAirportID(Integer) ^ t0.OriginAirportSeqID(Integer) <= t1.OriginAirportSeqID(Integer))` |
+| **DC23** | `¬(t0.OriginAirportID(Integer) >= t1.OriginAirportID(Integer) ^ t0.OriginAirportSeqID(Integer) <= t1.OriginAirportSeqID(Integer) ^ t0.OriginState(String) <> t1.OriginState(String))` |
 | **DC24** | `¬(t0.OriginCityName(String) == t1.OriginCityName(String) ^ t0.OriginState(String) <> t1.OriginState(String))` |
 | **DC25** | `¬(t0.OriginState(String) <> t1.OriginState(String) ^ t0.OriginAirportID(Integer) == t1.OriginAirportID(Integer))` |
+| **DC26** | `¬(t0.TailNum(String) == t1.TailNum(String) ^ t0.AirlineID(Integer) <> t1.AirlineID(Integer))` |
 | **DC27** | `¬(t0.OriginStateName(String) == t1.OriginStateName(String) ^ t0.OriginState(String) <> t1.OriginState(String))` |
 | **DC28** | `¬(t0.OriginState(String) == t1.OriginState(String) ^ t0.OriginStateName(String) <> t1.OriginStateName(String))` |
 | **DC29** | `¬(t0.OriginStateFips(Integer) <> t1.OriginStateFips(Integer) ^ t0.OriginWac(Integer) == t1.OriginWac(Integer))` |
 | **DC30** | `¬(t0.OriginStateFips(Integer) == t1.OriginStateFips(Integer) ^ t0.OriginWac(Integer) <> t1.OriginWac(Integer))` |
+| **DC31** | `¬(t0.UniqueCarrier(String) == t1.UniqueCarrier(String) ^ t0.Carrier(String) <> t1.Carrier(String))` |
+| **DC32** | `¬(t0.Carrier(String) == t1.Carrier(String) ^ t0.UniqueCarrier(String) <> t1.UniqueCarrier(String))` |
 | **DC33** | `¬(t0.OriginCityName(String) <> t1.OriginCityName(String) ^ t0.Origin(String) == t1.Origin(String))` |
 | **DC34** | `¬(t0.OriginStateFips(Integer) <> t1.OriginStateFips(Integer) ^ t0.OriginAirportID(Integer) == t1.OriginAirportID(Integer))` |
 | **DC35** | `¬(t0.OriginStateName(String) <> t1.OriginStateName(String) ^ t0.Origin(String) == t1.Origin(String))` |
 | **DC36** | `¬(t0.OriginAirportSeqID(Integer) == t1.OriginAirportSeqID(Integer) ^ t0.OriginStateName(String) <> t1.OriginStateName(String))` |
+| **DC37** | `¬(t0.FlightDate(String) == t1.FlightDate(String) ^ t0.DayofMonth(Integer) <> t1.DayofMonth(Integer))` |
+| **DC38** | `¬(t0.OriginAirportID(Integer) >= t1.OriginAirportID(Integer) ^ t0.OriginAirportSeqID(Integer) < t1.OriginAirportSeqID(Integer))` |
+| **DC39** | `¬(t0.OriginAirportSeqID(Integer) >= t1.OriginAirportSeqID(Integer) ^ t0.OriginAirportID(Integer) < t1.OriginAirportID(Integer))` |
+| **DC40** | `¬(t0.OriginAirportID(Integer) >= t1.OriginAirportID(Integer) ^ t0.OriginAirportSeqID(Integer) <= t1.OriginAirportSeqID(Integer) ^ t0.OriginStateName(String) <> t1.OriginStateName(String))` |
+| **DC41** | `¬(t0.OriginAirportID(Integer) >= t1.OriginAirportID(Integer) ^ t0.OriginAirportSeqID(Integer) <= t1.OriginAirportSeqID(Integer) ^ t0.OriginWac(Integer) <> t1.OriginWac(Integer))` |
 | **DC42** | `¬(t0.OriginStateFips(Integer) == t1.OriginStateFips(Integer) ^ t0.OriginState(String) <> t1.OriginState(String))` |
 | **DC43** | `¬(t0.OriginStateFips(Integer) <> t1.OriginStateFips(Integer) ^ t0.OriginState(String) == t1.OriginState(String))` |
 | **DC44** | `¬(t0.OriginWac(Integer) <> t1.OriginWac(Integer) ^ t0.OriginCityName(String) == t1.OriginCityName(String))` |
+| **DC45** | `¬(t0.TailNum(String) == t1.TailNum(String) ^ t0.UniqueCarrier(String) <> t1.UniqueCarrier(String))` |
+| **DC46** | `¬(t0.DayofMonth(Integer) == t1.DayofMonth(Integer) ^ t0.Month(Integer) == t1.Month(Integer) ^ t0.FlightDate(String) <> t1.FlightDate(String))` |
 | **DC47** | `¬(t0.OriginWac(Integer) <> t1.OriginWac(Integer) ^ t0.OriginAirportID(Integer) == t1.OriginAirportID(Integer))` |
+| **DC48** | `¬(t0.AirlineID(Integer) == t1.AirlineID(Integer) ^ t0.Carrier(String) <> t1.Carrier(String))` |
+| **DC49** | `¬(t0.Carrier(String) == t1.Carrier(String) ^ t0.AirlineID(Integer) <> t1.AirlineID(Integer))` |
 | **DC50** | `¬(t0.OriginStateName(String) <> t1.OriginStateName(String) ^ t0.OriginCityName(String) == t1.OriginCityName(String))` |
 | **DC51** | `¬(t0.OriginAirportSeqID(Integer) <> t1.OriginAirportSeqID(Integer) ^ t0.Origin(String) == t1.Origin(String))` |
 | **DC52** | `¬(t0.OriginAirportSeqID(Integer) == t1.OriginAirportSeqID(Integer) ^ t0.Origin(String) <> t1.Origin(String))` |
 | **DC53** | `¬(t0.OriginWac(Integer) == t1.OriginWac(Integer) ^ t0.OriginState(String) <> t1.OriginState(String))` |
 | **DC54** | `¬(t0.OriginState(String) == t1.OriginState(String) ^ t0.OriginWac(Integer) <> t1.OriginWac(Integer))` |
+| **DC55** | `¬(t0.Quarter(Integer) <> t1.Quarter(Integer))`              |
+| **DC56** | `¬(t0.OriginStateFips(Integer) <> t1.OriginStateFips(Integer) ^ t0.OriginAirportID(Integer) >= t1.OriginAirportID(Integer) ^ t0.OriginAirportSeqID(Integer) <= t1.OriginAirportSeqID(Integer))` |
+| **DC57** | `¬(t0.OriginCityMarketID(Integer) <> t1.OriginCityMarketID(Integer) ^ t0.OriginAirportID(Integer) >= t1.OriginAirportID(Integer) ^ t0.OriginAirportSeqID(Integer) <= t1.OriginAirportSeqID(Integer))` |
+| **DC58** | `¬(t0.TailNum(String) == t1.TailNum(String) ^ t0.Carrier(String) <> t1.Carrier(String))` |
 | **DC59** | `¬(t0.OriginCityMarketID(Integer) <> t1.OriginCityMarketID(Integer) ^ t0.OriginCityName(String) == t1.OriginCityName(String))` |
 | **DC60** | `¬(t0.OriginWac(Integer) <> t1.OriginWac(Integer) ^ t0.Origin(String) == t1.Origin(String))` |
 | **DC61** | `¬(t0.OriginAirportSeqID(Integer) == t1.OriginAirportSeqID(Integer) ^ t0.OriginWac(Integer) <> t1.OriginWac(Integer))` |
+| **DC62** | `¬(t0.Month(Integer) <> t1.Month(Integer) ^ t0.FlightDate(String) == t1.FlightDate(String))` |
 | **DC63** | `¬(t0.OriginCityMarketID(Integer) <> t1.OriginCityMarketID(Integer) ^ t0.OriginAirportID(Integer) == t1.OriginAirportID(Integer))` |
+| **DC64** | `¬(t0.AirlineID(Integer) == t1.AirlineID(Integer) ^ t0.UniqueCarrier(String) <> t1.UniqueCarrier(String))` |
+| **DC65** | `¬(t0.UniqueCarrier(String) == t1.UniqueCarrier(String) ^ t0.AirlineID(Integer) <> t1.AirlineID(Integer))` |
 | **DC66** | `¬(t0.OriginStateFips(Integer) <> t1.OriginStateFips(Integer) ^ t0.OriginCityName(String) == t1.OriginCityName(String))` |
 
-### Strong Semantics (55 DCs)
+### Strong Semantics (51 DCs)
 
 | Category                                    | DC IDs                                                       | Interpretation                                               |
 | ------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| **BTS/DOT Airport & Geography Master Data** | **DC1, 3-8, 12-21, 24-25, 27-30, 33-36, 42-44, 47, 50-54, 59-61, 63, 66** | **Airport/Location Master-Data Consistency**. These DCs express that BTS standardized airport geography fields should stay aligned: `OriginAirportID` / `OriginAirportSeqID` / `Origin` identify the same airport entity; `OriginCityMarketID`, `OriginCityName`, `OriginState`, `OriginStateName`, `OriginStateFips`, and `OriginWac` are descriptive or regional master-data attributes attached to that airport or market. In other words, the same airport/location should not map to conflicting city/state/market/geographic codes. |
-| **Calendar Determinism**                    | **DC9, 10, 37, 46, 62**                                      | **Temporal Consistency in a Yearly Snapshot**. `FlightDate` deterministically fixes `DayOfWeek`, `Month`, and `DayofMonth`; conversely, in a yearly slice where `Year` is fixed, `Month + DayofMonth` also fixes `FlightDate` and `DayOfWeek`. These DCs capture immutable calendar structure or its snapshot version. |
-| **Airline Identity Standards**              | **DC31-32, 48-49, 64-65**                                    | **Carrier Identity Alignment**. `AirlineID` (stable BTS/DOT airline identifier), `UniqueCarrier`, and `Carrier` are different identifiers/namespaces for the operating airline. These DCs say that the same carrier identity should not correspond to conflicting alternative codes within the dataset snapshot. |
-| **Operational Entity Snapshot**             | **DC26, 45, 58**                                             | **Tail Number to Operating Carrier Mapping**. `TailNum` identifies the aircraft, and in a given reporting snapshot it usually corresponds to a single operating carrier identity (`AirlineID` / `UniqueCarrier` / `Carrier`). This is best understood as a **snapshot-valid operational consistency** rule rather than a universal lifetime rule, but it is still semantically meaningful and quite presentable. |
+| **BTS/DOT Airport & Geography Master Data** | **DC1, 3-8, 12, 15-21, 24-25, 27-28, 33-36, 42-44, 47, 50-52, 59-61, 63, 66** | **Airport/Location Master-Data Consistency**. These DCs express that BTS standardized airport geography fields should stay aligned: `OriginAirportID` / `OriginAirportSeqID` / `Origin` identify the same airport entity; `OriginCityMarketID`, `OriginCityName`, `OriginState`, `OriginStateName`, and `OriginStateFips` are descriptive or administrative attributes attached to that airport or market. In other words, the same airport/location should not map to conflicting city/state/market/geographic codes. |
+| **Airport Identifier Co-Ordering**          | **DC38-39**                                                  | **Coordinated Airport Identifier Systems**. These two DCs can be interpreted as reflecting a stable co-ordering between `OriginAirportID` and `OriginAirportSeqID`, suggesting that the two identifier systems are not assigned independently but follow a broadly consistent master-data allocation scheme. Although weaker than direct equality-based mappings, they can still be packaged as structural regularities of the BTS airport registry. |
+| **Calendar Determinism**                    | **DC9-10, 37, 46, 62**                                       | **Temporal Consistency in a Yearly Snapshot**. `FlightDate` deterministically fixes `DayOfWeek`, `Month`, and `DayofMonth`; conversely, in a yearly slice where `Year` is fixed, `Month + DayofMonth` also fixes `FlightDate` and `DayOfWeek`. These DCs capture immutable calendar structure or its snapshot version. |
+| **Airline Identity Standards**              | **DC31-32, 48-49, 64-65**                                    | **Carrier Identity Alignment**. `AirlineID`, `UniqueCarrier`, and `Carrier` are different identifiers or namespaces for the operating airline. These DCs say that the same carrier identity should not correspond to conflicting alternative codes within the dataset snapshot. |
+| **Operational Entity Snapshot**             | **DC26, 45, 58**                                             | **Tail Number to Operating Carrier Mapping**. `TailNum` identifies the aircraft, and in a given reporting snapshot it usually corresponds to a single operating carrier identity (`AirlineID` / `UniqueCarrier` / `Carrier`). This is best understood as a **snapshot-valid operational consistency** rule rather than a universal lifetime rule, but it is still semantically meaningful and presentable. |
 
-### Weak Semantics (11 DCs)
+### Weak Semantics (15 DCs)
 
 | ID       | Denial Constraint Logic                                      | Explanation                                                  |
 | -------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | **DC2**  | `¬(t0.Year <> t1.Year)`                                      | **Single-Year Slice**. This is a dataset-selection artifact rather than a reusable domain rule. It says more about the extracted partition than about aviation semantics. |
-| **DC55** | `¬(t0.Quarter <> t1.Quarter)`                                | **Single-Quarter Slice**. Same issue as DC2: it reflects the chosen snapshot, not a stable business dependency. |
-| **DC38** | `¬(t0.OriginAirportID >= t1.OriginAirportID ^ t0.OriginAirportSeqID < t1.OriginAirportSeqID)` | **ID Ordering Artifact**. This relies on monotone ordering between two identifier systems. Such order is not a natural aviation rule; it is more likely a side effect of code assignment. |
-| **DC39** | `¬(t0.OriginAirportSeqID >= t1.OriginAirportSeqID ^ t0.OriginAirportID < t1.OriginAirportID)` | Same as DC38, just the symmetric form. Semantics come from numeric co-ordering of IDs, which is weak. |
 | **DC11** | `¬(t0.OriginCityName <> t1.OriginCityName ^ t0.OriginAirportID >= t1.OriginAirportID ^ t0.OriginAirportSeqID <= t1.OriginAirportSeqID)` | **Wrapped Ordering Constraint**. Although `OriginCityName` is meaningful, the real driver is still the numeric relation between `AirportID` and `AirportSeqID`, so the semantic core is weak. |
-| **DC22** | `¬(t0.Origin <> t1.Origin ^ t0.OriginAirportID >= t1.OriginAirportID ^ t0.OriginAirportSeqID <= t1.OriginAirportSeqID)` | Again, this looks semantic on the surface because `Origin` appears, but the explanatory center is still the ordering relation between two ID systems. |
+| **DC13** | `¬(t0.OriginWac == t1.OriginWac ^ t0.OriginStateName <> t1.OriginStateName)` | **Broad Regional Code Alignment**. This can be read as a geographic consistency rule, but `OriginWac` is a coarser regional code and its alignment with state-level attributes is less direct than airport- or state-identifier mappings. |
+| **DC14** | `¬(t0.OriginStateName == t1.OriginStateName ^ t0.OriginWac <> t1.OriginWac)` | Same as DC13. The relation is explainable, but weaker and less natural than direct airport-to-location or state-code-to-state-name mappings. |
+| **DC22** | `¬(t0.Origin <> t1.Origin ^ t0.OriginAirportID >= t1.OriginAirportID ^ t0.OriginAirportSeqID <= t1.OriginAirportSeqID)` | This looks semantic on the surface because `Origin` appears, but the explanatory center is still the ordering relation between two identifier systems. |
 | **DC23** | `¬(t0.OriginAirportID >= t1.OriginAirportID ^ t0.OriginAirportSeqID <= t1.OriginAirportSeqID ^ t0.OriginState <> t1.OriginState)` | Same pattern: a meaningful location attribute is attached to an essentially order-based artifact. Not ideal as a showcase DC. |
-| **DC40** | `¬(t0.OriginAirportID >= t1.OriginAirportID ^ t0.OriginAirportSeqID <= t1.OriginAirportSeqID ^ t0.OriginStateName <> t1.OriginStateName)` | Same issue as DC23. The `StateName` part is interpretable, but the DC is propped up by the ordering artifact. |
-| **DC41** | `¬(t0.OriginAirportID >= t1.OriginAirportID ^ t0.OriginAirportSeqID <= t1.OriginAirportSeqID ^ t0.OriginWac <> t1.OriginWac)` | Same issue as DC40. The geographic field is meaningful, but the ordering predicate weakens the overall semantic quality. |
-| **DC56** | `¬(t0.OriginStateFips <> t1.OriginStateFips ^ t0.OriginAirportID >= t1.OriginAirportID ^ t0.OriginAirportSeqID <= t1.OriginAirportSeqID)` | **Geographic Field + ID Ordering Hybrid**. Can be read, but not very naturally. The constraint still depends on accidental monotonicity between identifiers. |
+| **DC29** | `¬(t0.OriginStateFips <> t1.OriginStateFips ^ t0.OriginWac == t1.OriginWac)` | **Broad Regional Code Alignment**. This captures a regional-code regularity rather than a crisp administrative mapping. It is interpretable, but less semantically direct. |
+| **DC30** | `¬(t0.OriginStateFips == t1.OriginStateFips ^ t0.OriginWac <> t1.OriginWac)` | Same as DC29. It is more of a dataset-level geographic regularity than a clean business rule. |
+| **DC40** | `¬(t0.OriginAirportID >= t1.OriginAirportID ^ t0.OriginAirportSeqID <= t1.OriginAirportSeqID ^ t0.OriginStateName <> t1.OriginStateName)` | Same issue as DC23. The `StateName` part is interpretable, but the DC is still propped up by the ordering artifact. |
+| **DC41** | `¬(t0.OriginAirportID >= t1.OriginAirportID ^ t0.OriginAirportSeqID <= t1.OriginAirportSeqID ^ t0.OriginWac <> t1.OriginWac)` | The geographic field is meaningful, but the ordering predicate weakens the overall semantic quality. |
+| **DC53** | `¬(t0.OriginWac == t1.OriginWac ^ t0.OriginState <> t1.OriginState)` | **Broad Regional Code Alignment**. Again, this is a plausible geographic regularity, but the semantics are weaker than direct airport or state master-data rules. |
+| **DC54** | `¬(t0.OriginState == t1.OriginState ^ t0.OriginWac <> t1.OriginWac)` | Same as DC53. It is explainable, but not among the strongest and cleanest location constraints. |
+| **DC55** | `¬(t0.Quarter <> t1.Quarter)`                                | **Single-Quarter Slice**. This reflects the chosen snapshot, not a stable business dependency. |
+| **DC56** | `¬(t0.OriginStateFips <> t1.OriginStateFips ^ t0.OriginAirportID >= t1.OriginAirportID ^ t0.OriginAirportSeqID <= t1.OriginAirportSeqID)` | **Geographic Field + ID Ordering Hybrid**. It can be read, but not very naturally. The constraint still depends on accidental monotonicity between identifiers. |
 | **DC57** | `¬(t0.OriginCityMarketID <> t1.OriginCityMarketID ^ t0.OriginAirportID >= t1.OriginAirportID ^ t0.OriginAirportSeqID <= t1.OriginAirportSeqID)` | Same as DC56. `CityMarketID` is meaningful on its own, but once mixed with `>=` / `<=` over two ID systems, the rule becomes much less semantically clean. |
-
-|      |      |      |
-| ---- | ---- | ---- |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
-|      |      |      |
 
 ---
 
+### 
