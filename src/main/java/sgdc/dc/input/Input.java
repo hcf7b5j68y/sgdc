@@ -19,33 +19,7 @@ public class Input {
 	public Map<String, Integer> nameLoc = new HashMap<>();
 	public Map<String, ParsedColumn<?>> name2ParsedColumn = new HashMap<>();
 
-/*	public Input(RelationalInput relationalInput, int rowLimit) throws InputIterationException {
-		final int columnCount = relationalInput.numberOfColumns();
-		Column[] columns = new Column[columnCount];
-		for (int i = 0; i < columnCount; ++i) {
-			columns[i] = new Column(relationalInput.relationName(), relationalInput.columnNames[i]);
-		}
-
-		int lineCount = 0;
-		while (relationalInput.hasNext()) {
-			List<String> line = relationalInput.next();
-			for (int i = 0; i < columnCount; ++i) {
-				columns[i].addLine(line.get(i));
-			}
-			++lineCount;
-			if (rowLimit > 0 && lineCount >= rowLimit)
-				break;
-		}
-		this.lineCount = lineCount;
-
-		parsedColumns = new ArrayList<>(columns.length);
-		createParsedColumns(relationalInput, columns);
-
-		name = relationalInput.relationName();
-	}*/
-
-
-	public Input(RelationalInput relationalInput, int rowLimit) {
+	public Input(RelationalInput relationalInput, int rowLimit, int columnLimit) {
 		final int columnCount = relationalInput.numberOfColumns();
 		Column[] columns = readRelationalInputToColumns(relationalInput, rowLimit, true);
 		this.lineCount = columns.length > 0 ? columns[0].values.size() : 0;
@@ -61,10 +35,10 @@ public class Input {
 		name = relationalInput.relationName();
 	}
 
-	private Column[] readRelationalInputToColumns(RelationalInput relationalInput, int rowLimit, boolean csv) {
+	private Column[] readRelationalInputToColumns(RelationalInput relationalInput, int rowLimit, int columnLimit, boolean csv) {
 		final int columnCount = relationalInput.numberOfColumns();
-		Column[] columns = new Column[columnCount];
-		for (int i = 0; i < columnCount; ++i) {
+		Column[] columns = new Column[Math.min(columnCount, columnLimit)];
+		for (int i = 0; i < Math.min(columnCount, columnLimit); ++i) {
 			columns[i] = new Column(relationalInput.relationName(), relationalInput.columnNames[i]);
 		}
 		int nLine = 0;
@@ -73,7 +47,7 @@ public class Input {
 			csvReader.readHeaders();    // skip the header
 			while (csvReader.readRecord()) {
 				String[] line = csvReader.getValues();
-				for (int i = 0; i < columnCount; ++i)
+				for (int i = 0; i < Math.min(columnCount, columnLimit); ++i)
 					columns[i].addLine(line[i]);
 
 				++nLine;
@@ -146,7 +120,7 @@ public class Input {
 	}
 
 	public Input(RelationalInput relationalInput) throws InputIterationException {
-		this(relationalInput, -1);
+		this(relationalInput, -1, -1);
 	}
 
 	public int[][] getInts() {
