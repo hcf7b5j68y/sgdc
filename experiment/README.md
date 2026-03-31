@@ -8,11 +8,11 @@ Provided in datasets.zip, includes 10 datasets mentioned in our paper.
 
 ## Parameters
 
-All the parameters are included in **Parameters.java**, such as $\alpha, \tau$
+All the parameters are included in  [**Parameters.java**](https://github.com/hcf7b5j68y/sgdc/blob/main/src/main/java/sgdc/dc/util/Parameters.java), such as $\alpha, \tau$
 
 ## Exp-1: Runtime
 
-You can find Hydra, DcFinder and FDCD on [HPI-Information-Systems/Metanome: The source repository of the Metanome tool](https://github.com/HPI-Information-Systems/Metanome)
+You can find Hydra, DcFinder and ECP on [HPI-Information-Systems/Metanome: The source repository of the Metanome tool](https://github.com/HPI-Information-Systems/Metanome)
 
 And DcValidity on [NoSocAlgroc/DCValidity](https://github.com/nosocalgroc/DCValidity)
 
@@ -35,3 +35,8 @@ Use **CsvErrorInjector.java** to generate injected dataset. Different parameters
 ## Exp-8: Comparison with DcValidity
 
 You can find the **soundDCs** of DcValidity on [NoSocAlgroc/DCValidity](https://github.com/nosocalgroc/DCValidity)
+
+**Exp-9:**
+
+Check the linke here: [sgdc/experiment/exp-9](https://github.com/hcf7b5j68y/sgdc/tree/main/experiment/exp-9)
+
